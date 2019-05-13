@@ -165,11 +165,12 @@ class myPDB:
             print 'Using existing PSI-BLAST Profile',ppath
         #pdb.set_trace()
         pfile=parsePSSMfile(ppath)#parsed file
-        zspinex=spinex.pssm_to_spinex(ppath)
+        # TODO(Raph) might need to renable this.
+#        zspinex=spinex.pssm_to_spinex(ppath)
         N=len(self.R)
 
         #pdb.set_trace()
-        if pfile is not None and zspinex is not None:
+        if pfile is not None: # and zspinex is not None:
             (pssm,psfm,info)=pfile
             wpssm=getWPSSM(pssm,self.HWS_PSSM)
             wpsfm=getWPSSM(psfm,self.HWS_PSSM)
@@ -180,7 +181,7 @@ class myPDB:
             self.asa=np.zeros(N);self.asa.fill(np.nan)
             self.rasa=np.zeros(N);self.rasa.fill(np.nan)
             self.info=np.zeros(N);self.info.fill(np.nan)
-            (asa,rasa,_,_,_)=zspinex
+#            (asa,rasa,_,_,_)=zspinex
             for k in range(len(self.seq)):
                 idx=self.S2Ri[k]
                 self.pssm[:,idx]=pssm[:,k]
@@ -188,8 +189,8 @@ class myPDB:
                 self.wpssm[:,idx]=wpssm[:,k]
                 self.wpsfm[:,idx]=wpsfm[:,k]
                 self.info[idx]=info[k]
-                self.asa[idx]=asa[k]
-                self.rasa[idx]=rasa[k]
+#                self.asa[idx]=asa[k]
+#                self.rasa[idx]=rasa[k]
         else:
             print 'Encountered some error processing spinex or psi-blast',self.name
             raise Exception(('Encountered some error processing spinex or psi-blast',self.name))

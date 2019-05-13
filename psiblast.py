@@ -26,7 +26,7 @@ def runPSIBLAST(f,db='nr',ofile=None,niter=3):
         ofile = f
     #cmdstr='blastpgp -d nr -i '+f+' -Q '+f+'.mat -a 4 -j 3' #for version 2.2.24 (Aug-08-2010)
     #TODO(Raph): Log that you added blastdbpath here.
-    cmdstr='psiblast -query '+f+' -db '+blastdbpath+' -out '+ofile+'.psi.txt'+' -num_iterations '+str(niter)+' -out_pssm '+ofile+'.pssm'+' -out_ascii_pssm '+ofile+'.mat_' #version 2.2.24+
+    cmdstr='psiblast -num_threads 4 -query '+f+' -db '+blastdbpath+' -out '+ofile+'.psi.txt'+' -num_iterations '+str(niter)+' -out_pssm '+ofile+'.pssm'+' -out_ascii_pssm '+ofile+'.mat_' #version 2.2.24+
     print cmdstr
     if os.system(cmdstr) == 0:
         print('PSIBLAST Successful : ', cmdstr)
