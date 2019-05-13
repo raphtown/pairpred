@@ -138,7 +138,6 @@ class myPDB:
         except Exception as e:
             print "Error getting psaia features for",self.name,":",e," Is the .tbl file present?"
 
-            # TODO(RAPH) removed this
         try:
             self.__getPSSM(auxpath)
         except Exception as e:
